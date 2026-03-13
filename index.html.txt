@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasupuleti Dental Care | Tirupati's Premium Center</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0077b6;
+            --secondary: #00b4d8;
+            --accent: #25D366;
+            --gold: #FFD700;
+            --light: #f7fbff;
+            --dark: #1d3557;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            color: #333;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            cursor: none; /* Custom cursor enabled */
+        }
+
+        /* CUSTOM CURSOR */
+        #cursor { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99999; }
+        #cursor-outline { width: 30px; height: 30px; border: 2px solid var(--secondary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 99998; transition: all 0.1s ease; }
+
+        /* FAST DOUBLE-TOOTH INTRO */
+        #intro {
+            position: fixed;
+            width: 100%; height: 100vh;
+            background: var(--white);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+
+        .tooth-box { display: flex; gap: 15px; }
+        .tooth {
+            font-size: 60px;
+            animation: bounce 0.6s infinite alternate cubic-bezier(0.6, 0.05, 0.2, 0.9);
+        }
+        .tooth:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
+
+        .intro-text {
+            margin-top: 25px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* HEADER & TOP BAR */
+        .top-bar { background: var(--dark); color: #fff; padding: 8px 8%; display: flex; justify-content: space-between; font-size: 12px; }
+
+        header {
+            background: rgba(0, 119, 182, 0.95);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 18px 8%;
+            position: sticky; top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-area i { font-size: 24px; }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* HERO SECTION (Enhanced) */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(35px, 6vw, 65px); font-weight: 700; line-height: 1.1; }
+        .hero p { font-size: 20px; margin: 20px 0 35px; opacity: 0.9; font-weight: 300; }
+
+        .btn-main {
+            background: var(--white);
+            color: var(--primary);
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-main:hover { transform: translateY(-5px); background: var(--gold); color: var(--dark); }
+
+        /* SECTIONS */
+        section { padding: 100px 10%; opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        section.show { opacity: 1; transform: translateY(0); }
+
+        h2 { font-size: 36px; color: var(--dark); margin-bottom: 40px; text-align: center; }
+
+        /* DOCTOR SECTION (Upgraded) */
+        .doctor-card {
+            background: var(--light);
+            padding: 50px;
+            border-left: 10px solid var(--primary);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            display: flex; gap: 40px; align-items: center; flex-wrap: wrap;
+        }
+        .doc-stats { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        .stat { 
+            background: var(--white); 
+            padding: 20px 25px; 
+            border-radius: 12px; 
+            text-align: center; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03); 
+        }
+        .stat h4 { color: var(--primary); font-size: 22px; }
+
+        /* SERVICES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 45px 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: 0.4s;
+            border: 1px solid #f0f0f0;
+            position: relative; overflow: hidden;
+        }
+
+        .card:hover { transform: translateY(-15px); border-color: var(--secondary); background: var(--primary); color: white; }
+        .card i { font-size: 50px; color: var(--primary); margin-bottom: 25px; transition: 0.3s; }
+        .card:hover i { color: var(--gold); }
+
+        .enquire-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* THE ADVANTAGE TABLE */
+        .advantage-box {
+            background: var(--dark);
+            color: white;
+            padding: 40px;
+            border-radius: 25px;
+            margin-top: 40px;
+            overflow-x: auto;
+        }
+        .comp-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+        .comp-table th, .comp-table td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .p-gold { color: var(--gold); font-weight: 700; }
+
+        /* FORM */
+        .form-wrapper {
+            max-width: 700px;
+            margin: auto;
+            background: var(--light);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+        }
+
+        input, select, textarea {
+            width: 100%; padding: 15px; margin-bottom: 20px;
+            border: 1px solid #ddd; border-radius: 15px;
+            font-family: inherit; font-size: 16px;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: var(--white);
+            border: none; padding: 18px; width: 100%;
+            border-radius: 15px; font-weight: 800; font-size: 18px;
+            cursor: pointer; transition: 0.3s;
+        }
+
+        /* FLOAT WHATSAPP */
+        .wa-float {
+            position: fixed;
+            bottom: 35px; right: 35px;
+            background: var(--accent);
+            color: var(--white);
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 35px; text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 2000;
+        }
+
+        /* DIRECTIONS BUTTON */
+        .directions-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(0,119,182,0.3);
+            transition: 0.3s;
+        }
+        .directions-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        footer { background: var(--dark); color: rgba(255,255,255,0.7); text-align: center; padding: 60px 20px; }
+        .social-icons a { color: white; font-size: 25px; margin: 0 15px; transition: 0.3s; }
+        .social-icons a:hover { color: var(--gold); }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 38px; }
+            section { padding: 60px 5%; }
+            .doc-stats { gap: 10px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cursor"></div>
+    <div id="cursor-outline"></div>
+
+    <div id="intro">
+        <div class="tooth-box">
+            <div class="tooth">🦷</div>
+            <div class="tooth">🦷</div>
+        </div>
+        <div class="intro-text">PASUPULETI DENTAL CARE</div>
+    </div>
+
+    <div class="top-bar">
+        <span><i class="fas fa-phone"></i> +91 79937 34243</span>
+        <span><i class="fas fa-map-marker-alt"></i> Bharathi Nagar, Tirupati</span>
+    </div>
+
+    <header>
+        <div class="logo-area">
+            <i class="fas fa-tooth"></i>
+            <h2 style="font-size: 22px;">Pasupuleti Dental</h2>
+        </div>
+        <nav>
+            <a href="#doctor">Doctor</a>
+            <a href="#services">Services</a>
+            <a href="#why-us">Why Us</a>
+            <a href="#appointment">Book Now</a>
+        </nav>
+    </header>
+
+    <section class="hero show">
+        <div data-aos="fade-up">
+            <h1>Advanced Laser Dentistry<br>For Your Perfect Smile</h1>
+            <p>Painless treatments with 15+ years of clinical excellence in Tirupati.</p>
+            <a class="btn-main" href="#appointment">START YOUR JOURNEY</a>
+        </div>
+    </section>
+
+    <section id="doctor">
+        <h2>Expertise You Can Trust</h2>
+        <div class="doctor-card" data-aos="fade-right">
+            <div style="flex: 1; min-width: 300px;">
+                <h3>Dr. Sirisha Pasupuleti, MDS</h3>
+                <p>
+                    Specializing in **Advanced Laser Dentistry** and **Cosmetic Smile Design**, Dr. Pasupuleti has transformed over 5,000 smiles. Her philosophy centers on "Gentle Care," ensuring a zero-anxiety experience for patients of all ages.
+                </p>
+                <div class="doc-stats">
+                    <div class="stat"><h4>5k+</h4><p>Smiles</p></div>
+                    <div class="stat"><h4>15yr</h4><p>Experience</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 style="text-align:center">Specialized Dental Care</h2>
+        <div class="services-grid">
+            <div class="card" data-aos="fade-up">
+                <i class="fas fa-tooth"></i>
+                <h3>Laser Root Canal</h3>
+                <p>Modern, infection-free, and 100% painless procedure using advanced lasers.</p>
+                <a class="enquire-btn" href="https://wa.me/917993734243?text=Enquiry%20for%20Laser%20Root%20Canal">Enquire Now</a>
+            </div>
+
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-magic"></i>
+                <h3>Smile Makeover</h3>
+                <p>Get your dream smile with veneers, whitening, and digital design.</p>
+                <a class="enquire-btn" href="https://wa.me/917993734243?text=Enquiry%20for%20Smile%20Makeover">Enquire Now</a>
+            </div>
+
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-microscope"></i>
+                <h3>Dental Implants</h3>
+                <p>Permanent, strong, and natural-looking replacement for missing teeth.</p>
+                <a class="enquire-btn" href="https://wa.me/917993734243?text=Enquiry%20for%20Dental%20Implants">Enquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us">
+        <h2>The Pasupuleti Advantage</h2>
+        <div class="advantage-box" data-aos="zoom-in">
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Standard Clinic</th>
+                        <th class="p-gold">Pasupuleti Dental</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Technology</td>
+                        <td>Traditional Drills</td>
+                        <td class="p-gold"><i class="fas fa-check"></i> Advanced Biolase Laser</td>
+                    </tr>
+                    <tr>
+                        <td>Pain Level</td>
+                        <td>Moderate</td>
+                        <td class="p-gold"><i class="fas fa-check"></i> Virtually Pain-Free</td>
+                    </tr>
+                    <tr>
+                        <td>Sterilization</td>
+                        <td>Basic</td>
+                        <td class="p-gold"><i class="fas fa-check"></i> 7-Step Hospital Grade</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="appointment">
+        <div class="form-wrapper" data-aos="fade-up">
+            <h2 style="margin-bottom: 20px;">Book Your Appointment</h2>
+            <input type="text" id="name" placeholder="Full Name">
+            <input type="tel" id="phone" placeholder="Mobile Number">
+            <select id="service">
+                <option>General Consultation</option>
+                <option>Laser Root Canal</option>
+                <option>Implant Consultation</option>
+                <option>Smile Makeover</option>
+            </select>
+            <textarea id="note" rows="3" placeholder="Describe your dental issue..."></textarea>
+            <button class="submit-btn" onclick="sendToWhatsapp()">CONFIRM VIA WHATSAPP <i class="fab fa-whatsapp"></i></button>
+        </div>
+    </section>
+
+    <section id="contact" style="text-align: center;">
+        <h2>Find Us In Tirupati</h2>
+        <p style="margin-bottom: 20px;">Sri Siva Keshava, Bharathi Nagar, Tirupati, AP 517502</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Pasupuleti+Dental+Care+Tirupati" target="_blank" class="directions-btn">
+            <i class="fas fa-directions"></i> GET DIRECTIONS
+        </a>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/pasupuleti_dental_care/"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/917993734243"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="margin-top: 20px;">© 2026 Pasupuleti Dental Care | Your Smile, Our Mission.</p>
+    </footer>
+
+    <a href="https://wa.me/917993734243" class="wa-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Intro & Cursor Logic
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById("intro").style.opacity = "0";
+                setTimeout(() => document.getElementById("intro").style.display = "none", 600);
+            }, 1500);
+        });
+
+        const cursor = document.getElementById('cursor');
+        const outline = document.getElementById('cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+            outline.style.left = e.clientX + 'px'; outline.style.top = e.clientY + 'px';
+        });
+
+        // WhatsApp Sender
+        function sendToWhatsapp(){
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const service = document.getElementById("service").value;
+            const note = document.getElementById("note").value;
+
+            if(!name || !phone) { alert("Please fill your name and phone."); return; }
+
+            const msg = `*Appointment Request*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Service:* ${service}%0A*Note:* ${note}`;
+            window.open(`https://wa.me/917993734243?text=${msg}`);
+        }
+
+        // Scroll Observer
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("show"); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll("section").forEach(sec => observer.observe(sec));
+    </script>
+
+</body>
+</html>
